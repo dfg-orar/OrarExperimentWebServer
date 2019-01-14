@@ -1,0 +1,12 @@
+Loading TBox...
+Finished loagind TBox.
+Initianilze pagoda...
+datapath:=/Users/kien/workspaceJava/DockerOrarExperiment2/unzipOntologies/lubm10.ttl;
+XMLReader initialized using JAXP: org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser@503d687a
+Finished initianilzation of pagoda.
+Start preprocess,e.g. loading + materialization for low/upper bounds of entailments...
+rl-lower-bound store finished importing data in seconds = 1.783
+elho-lower-bound store finished importing data in seconds = 1.804
+Failed to find configuration: location-mapping.ttl;location-mapping.rdf;location-mapping.n3;etc/location-mapping.rdf;etc/location-mapping.n3;etc/location-mapping.ttl
+tracking store finished importing data in seconds = 1.671
+Finished preprocess,e.g. loading + materialization for low/upper bounds of entailments

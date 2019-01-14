@@ -1,0 +1,70 @@
+====== BEGIN EXPERIMENT FOR ONTOLOGY: input_ontology ======
+****************************************************************
+Orar started
+INFO  - Loading TBox:/Users/kien/workspaceJava/DockerOrarExperiment2/onto/tbox.owl ...
+INFO  - Information of the validated ontology TBox, e.g. after removing axioms not in the considered language:
+INFO  - Statistic: Number_of_TBox_Axioms = 96
+INFO  - Statistic: Number_of_input_concept_names = 43
+INFO  - Statistic: Number_of_input_role_names = 25
+INFO  - Statistic: Number_of_input_individuals = 0
+INFO  - Statistic: Number_of_input_concept_assertions = 0
+INFO  - Statistic: Number_of_input_role_assertions = 0
+INFO  - Statistic: Number_of_input_concept_and_role_assertions = 0
+INFO  - Loading ABoxes/datasets: /Users/kien/workspaceJava/DockerOrarExperiment2/aux/aboxListinput_ontology.txt ...
+INFO  - ABoxList file:/Users/kien/workspaceJava/DockerOrarExperiment2/aux/aboxListinput_ontology.txt
+INFO  - ABox statistic:
+INFO  - Statistic: Number_of_input_individuals = 207426
+INFO  - Statistic: Number_of_input_concept_assertions = 219680
+INFO  - Statistic: Number_of_input_role_assertions = 630753
+INFO  - Statistic: Number_of_input_concept_and_role_assertions = 850433
+INFO  - Statistic: Current_loop = 1;Statistic: Number_of_types = 29
+INFO  - Statistic: Current_loop = 1;Statistic: Number_of_abstract_individuals = 223
+INFO  - Statistic: Current_loop = 1;Statistic: Number_of_abstract_concept_and_role_assertions = 227
+INFO  - Materializing abstraction 1 ...
+INFO  - Stop any existing Konclude/KoncludeMac/KoncludeLinux process
+
+
+
+
+
+INFO  - Konclude has been started.
+INFO  - Connected to Konclude server at: http://localhost:9090
+INFO  - Konclude server has been stoped.
+INFO  - Statistic: Reasoning_time_on_this_abstraction_in_seonds = 0
+INFO  - Statistic: Current_loop = 2;Statistic: Number_of_types = 29
+INFO  - Statistic: Current_loop = 2;Statistic: Number_of_abstract_individuals = 223
+INFO  - Statistic: Current_loop = 2;Statistic: Number_of_abstract_concept_and_role_assertions = 357
+INFO  - Materializing abstraction 2 ...
+INFO  - Stop any existing Konclude/KoncludeMac/KoncludeLinux process
+
+
+
+
+
+INFO  - Konclude has been started.
+INFO  - Connected to Konclude server at: http://localhost:9090
+INFO  - Konclude server has been stoped.
+INFO  - Statistic: Reasoning_time_on_this_abstraction_in_seonds = 0
+INFO  - Statistic: Number_of_abstraction_steps = 2
+INFO  - ********** Inferred assertions **********
+INFO  - Statistic: Number_of_materialized_concept_assertions = 757037
+INFO  - Statistic: Number_of_materialized_role_assertions = 835868
+INFO  - Statistic: Number_of_materialized_equality_assertions = 0
+INFO  - Statistic: Number_of_inferred_assertions = 1592905
+INFO  - Statistic: Time_for_reading_out_inferred_assertions = 0
+INFO  - ********** Time details for each steps **********
+INFO  - Statistic: Time_loading_abstract_ontology_in_seconds = 0
+INFO  - Statistic: Total_time_for_computing_types = 0
+INFO  - Statistic: Total_time_for_generating_abstract_ontologies = 0
+INFO  - Statistic: Total_time_for_updating_the_original_ABox = 0
+INFO  - Statistic: Reasoning_time_by_deductive_rules_in_seconds = 0
+INFO  - Statistic: Reasoning_time_by_the_inner_reasoner_in_seconds = 0
+INFO  - Statistic: Total_reasoning_time_in_seconds = 2
+INFO  - **********: Total times **********
+INFO  - Statistic: Total_reasoning_time_on_abstract_ontologies_in_seonds = 0
+INFO  - Statistic: Total_reasoning_time_in_seconds = 2
+INFO  - Finished.
+Orar finished
+****************************************************************
+====== END EXPERIMENT FOR ONTOLOGY: input_ontology ======
+

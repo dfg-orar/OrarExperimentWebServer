@@ -1,0 +1,18 @@
+{info} 12:57:53:392 >> Starting Konclude ... 
+{info} 12:57:53:392 >> Konclude - Uni Ulm Parallel Reasoner
+{info} 12:57:53:392 >> Reasoner for the SROIQV(D) Description Logic, 64-bit, Version v0.6.2-544 - f07c265 (Oct 27 2015)
+
+{info} 12:57:53:394 >> Starting realization processing for ontology '/onto/onto.functionalsyntax.owl'.
+{info} 12:57:53:394 >> Initializing reasoner. Creating calculation context.
+{info} 12:57:53:395 >> Reasoner initialized with 1 processing unit(s).
+{error} 12:57:53:395 >> File '/onto/onto.functionalsyntax.owl' not found.
+{info} 12:57:53:396 >> Preprocessing ontology 'http://konclude.com/test/kb'.
+{info} 12:57:53:396 >> Finished preprocessing in 0 ms for ontology 'http://konclude.com/test/kb'.
+{info} 12:57:53:396 >> Precomputing ontology 'http://konclude.com/test/kb', expressiveness 'AL'.
+{info} 12:57:53:397 >> Finished precomputing in 1 ms for ontology 'http://konclude.com/test/kb'.
+{info} 12:57:53:397 >> Classifying ontology 'http://konclude.com/test/kb', expressiveness 'AL'.
+{info} 12:57:53:397 >> Ontology 'http://konclude.com/test/kb' has been sufficiently saturated, extracting data for classification.
+{info} 12:57:53:397 >> Finished classification in 0 ms for ontology 'http://konclude.com/test/kb'.
+{info} 12:57:53:397 >> Realizing ontology 'http://konclude.com/test/kb', expressiveness 'AL'.
+{info} 12:57:53:397 >> Finished realization in 0 ms for ontology 'http://konclude.com/test/kb'.
+{info} 12:57:53:397 >> Query 'UnnamedRealizeQuery' processed in '0' ms.

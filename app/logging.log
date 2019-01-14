@@ -1,0 +1,8 @@
+INFO  - Loading TBox:../onto/lubm.owl ...
+WARN  - http://www.oracle.com/xml/jaxp/properties/entityExpansionLimit not supported by parser type org.apache.xerces.jaxp.SAXParserImpl
+WARN  - entityExpansionLimit not supported by parser type org.apache.xerces.jaxp.SAXParserImpl
+INFO  - Total number of all parsed triples up to now: 850433
+INFO  - Time for loading the ontology (in seconds): 10
+INFO  - Saving ontology to the file: ../onto/lubm.functional.owl in format OWL Functional Syntax
+INFO  - Time for saving the ontology (in seconds):4
+INFO  - Done!

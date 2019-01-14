@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<script src="//d3js.org/d3.v4.min.js"></script>
+<style>
+/* --- Global --- */
+body {
+  margin:auto;
+  width: 885px;
+  font: 10px arial;
+  padding: 25px;
+  color:#333;
+}
+select {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 3px;
+  text-decoration: none;
+  font-size: 11px;
+  cursor: pointer;
+}
+select:focus {
+  outline:0;
+}
+b {
+  font-size:11px;
+}
+.sortCheck {
+  float:right;
+  margin-top:-35px;
+  margin-right:290px;
+}
+#myCheckbox {
+  position:relative;
+  top:3px;
+}
+/* --- Chart --- */
+.grid--y path,
+.grid--y text {
+  display: none;
+}
+.grid--y line {
+  opacity:.15;
+}
+g.layer {
+  opacity:.9;
+}
+g.layer:hover {
+  opacity:1;
+}
+</style>
+</head>
+<body>
+
+<!-- Selection Category -->
+<b>Choose Category</b>
+
+<select id="category">
+  <option value="CC">Category 1</option>
+  <option value="DD">Category 2</option>
+</select> 
+
+<!-- Selection New dataset -->
+<span style="margin-left:30px;">
+<b>Choose Year</b>
+  
+<select id="year" onchange="toggle();">
+  <option value="data2017">2017</option>
+  <option value="data2016">2016</option>
+</select>
+</span>
+
+<!-- Chart -->
+<div id="chart"></div>
+
+<!-- Sort dimension -->
+<span class="sortCheck">Sort Values
+<input type="checkbox" id="myCheckbox">
+</span>
+
+<script>
+
+let Globalvar = {}; // Global access variables
+
+Globalvar.csvShift = "data.csv"; // CSV init
+
+let formatValue = d3.format(".2s");
+
+let margin = {top: 35, right: 145, bottom: 35, left: 45},
+    width = 650 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+	
+let g = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+let x0 = d3.scaleBand().rangeRound([0, width]).paddingInner(0.1),
+    x1 = d3.scaleBand(),
+    y = d3.scaleLinear().rangeRound([height, 0]);
+
+let xAxis = d3.axisBottom(x0),
+    yAxis = d3.axisLeft(y).ticks(null, "s");
+    yGrid = d3.axisLeft(y).tickSize(-width);
+
+g.append("g")
+    .attr("class","axis axis--x")
+    .attr("transform", "translate(0," + height + ")");
+
+g.append("g")
+    .attr("class", "axis axis--y");
+
+g.append("g")
+    .attr("class", "axis grid--y");
+
+Globalvar.durations = 0;
+  
+let afterLoad = () => Globalvar.durations = 750;
+
+let z = d3.scaleOrdinal()
+    .range(["steelblue","darkorange", "lightblue"]);
+
+d3.select("#category").on('change', update); // Change category
+d3.select("#myCheckbox").on('change', update); // Sort checkbox
+
+update();
+
+var file, catInt;
+
+let legend = g.append("g")
+    .attr("text-anchor", "end")
+  .selectAll("g")
+    .data([["Team 1"],["Team 2"],["Team 3"]])
+  .enter().append("g")
+    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+legend.append("rect")
+    .attr("x", width + 10)
+    .attr("width", 12)
+    .attr("height", 19)
+    .attr("fill", z);
+
+legend.append("text")
+    .attr("x", width + 60)
+    .attr("y", 9.5)
+    .attr("dy", "0.32em")
+    .text(function(d) { return d; });
+
+function update() {
+  
+	file = Globalvar.csvShift
+
+  // Event handlers
+  catInt = d3.select('#category').property('value');
+
+	d3.csv(file, type, function(error, data) {
+		if (error) throw error;
+	
+		let keys = data.columns.slice(1, 4); // Modify accordingly
+
+    let sortIndex = data.map(function(d){ return d.State});
+
+    let copy = [];
+
+    keys.forEach(function(t) {
+      t = t.slice(0, -2) // Slice last two letters
+      copy.push(t) // Push sliced strings into copy array
+    })
+	
+		// yDomain and yAxis/yGrid
+		y.domain([0, d3.max(data, function(d) {
+			return d3.max(keys, function(key) {
+				return d[key];
+				}); 
+			})
+		]).nice();
+
+    g.selectAll(".axis.axis--y").transition()
+      .duration(Globalvar.durations)
+      .call(yAxis);
+    g.selectAll(".axis.grid--y").transition()
+      .duration(Globalvar.durations)
+      .call(yGrid);
+
+// bars
+let barGroups = g.selectAll("g.layer").data(data);
+barGroups.enter().append("g")
+  .classed('layer', true);
+
+barGroups.exit().remove();
+
+    // Sort data
+    data.sort(d3.select("#myCheckbox").property("checked")
+      ? function(a, b) { return b.total - a.total; }
+      : function(a, b) { return sortIndex.indexOf(a.State) - sortIndex.indexOf(b.State);})
+
+    // xDomains
+    x0.domain(data.map(function(d) { return d.State; }));
+    x1.domain(keys).rangeRound([0, x0.bandwidth()]);
+	
+		// Update axis
+		g.selectAll(".axis.axis--x").transition()
+			.duration(Globalvar.durations)
+			.call(xAxis);
+
+g.selectAll("g.layer").transition().duration(Globalvar.durations)
+  .attr("transform", function(d, i) {
+    return "translate(" + x0(d.State) + ",0)";
+  });
+    
+    let bars = g.selectAll("g.layer").selectAll("rect")
+        .data(function(d) { 
+            return copy.map(function(key) { // Return copy 
+                return {key: key+catInt, value: d[key+catInt]}; // Add catInt
+            }); 
+        });
+    bars.enter().append("rect")
+        .attr("fill", function(d) { return z(d.key); })
+        .attr("width", x1.bandwidth())
+
+      .transition().duration(Globalvar.durations)
+        .attr("x", function(d) { return x1(d.key); })
+        .attr("y", function(d) { return y(d["value"]); })
+        .attr("height", function(d) { return height - y(d["value"]); });
+    
+    bars
+      .transition().duration(Globalvar.durations)
+        .attr("y", function(d) { return y(d["value"]); })
+        .attr("height", function(d) { return height - y(d["value"]); });
+
+    bars.exit().remove();
+
+    // Text on bars
+    let textOnBar = g.selectAll("g.layer").selectAll("text")
+      .data(function(d) { 
+            return copy.map(function(key) { // Return copy 
+                return {key: key+catInt, value: d[key+catInt]}; // Add catInt
+            }); 
+        })
+    textOnBar.enter().append("text")
+      .attr("fill","#fff")
+      .attr("font-size",11)
+      .transition().duration(Globalvar.durations)
+      .attr("transform", function(d, i) {
+        let x0 = x1.bandwidth() * i + 7,
+            y0 = y(d.value) + 8;
+        return "translate(" + x0 + "," + y0 + ") rotate(90)";
+      })
+      .text(function(d) {return formatValue(d.value)})
+
+    textOnBar
+      .transition().duration(Globalvar.durations)
+      .attr("transform", function(d, i) {
+        let x0 = x1.bandwidth() * i + 7,
+            y0 = y(d.value) + 8;
+        return "translate(" + x0 + "," + y0 + ") rotate(90)";
+      })
+      .text(function(d) {return formatValue(d.value)})
+
+    afterLoad(); // Change transition duration
+
+	}); 
+}
+
+// Read data
+function type(d, i, columns) {
+  for (var i = 1, ttl = 0, n = columns.length; i < n; ++i) ttl += d[columns[i]] = +d[columns[i]];
+    d.total = ttl;
+    return d;
+}
+
+// Toggle csv data
+function toggle() {
+    if (document.getElementById('year').value == 'data2017') {
+         Globalvar.csvShift = "data.csv" ;
+    } else if 
+       (document.getElementById('year').value == 'data2016') {
+         Globalvar.csvShift = "data2.csv";
+    } update();
+}
+</script>
+</body>

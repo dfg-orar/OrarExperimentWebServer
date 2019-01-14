@@ -1,0 +1,1 @@
+java -Xmx4G -jar /Users/kien/dockerdirtest/app/Orar21.jar -koncludepath /Users/kien/dockerdirtest/app/KoncludeMac -port 9090 -tbox /Users/kien/dockerdirtest/onto/demoTBox.owl -abox /Users/kien/dockerdirtest/onto/demoABoxList.txt -statistic -reasoningtime

@@ -1,0 +1,11 @@
+rl-lower-bound store finished importing data in seconds = 0.001
+elho-lower-bound store finished importing data in seconds = 0.0
+Failed to find configuration: location-mapping.ttl;location-mapping.rdf;location-mapping.n3;etc/location-mapping.rdf;etc/location-mapping.n3;etc/location-mapping.ttl
+tracking store finished importing data in seconds = 0.0
+Finished preprocess,e.g. loading + materialization for low/upper bounds of entailments
+Number of queried concepts = 1
+Finished concept materializaion
+Number of queried roles = 3
+Finished role materialization
+Total time in seconds = 0
+Reasoning time in seconds = 0
